@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <title>{{page_title}}</title>
+  </head>
+  <body>
+
+
+    {% if result %}
+        
+        <div class="container">
+        <h1 class="container text-center mt-3">Price Predict</h1>
+
+        <p class="container mt-3" style="font-size: larger;">prediction is : {{price}} </p>
+
+        <a href="/">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Go Back</button>
+        </a>
+    </div>
+    {% endif %}
+
+
+    {% if not result %}
+    <br><br>
+    <h1 class='container'>
+        house Price Prediction
+    </h1>
+    <form class="container" action="result/" method="post">
+
+{% csrf_token %}
+    <br><br><br>
+    <input type="text" class="form-control" name="Avg_Area_Income" required placeholder='Avg_Area_Income'> <br> <br>
+    <input type="text" class="form-control"  name="Avg_Area_House_Age" required placeholder='Avg_Area_House_Age'> <br> <br>
+    <input type="text" class="form-control"  name="Avg_Area_Number_of_Rooms" required placeholder='Avg_Area_Number_of_Rooms'> <br><br>
+    <input type="text" class="form-control"  name="Avg_Area_Number_of_Bedrooms" required placeholder='Avg_Area_Number_of_Bedrooms'> <br><br>
+    <input type="text" class="form-control"  name="Area_Population" required placeholder='Area_Population'> <br><br> 
+    
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    {% endif %}
+
+    <script src="{% static 'bootstrap.min.js' %}" ></script>
+  </body>
+</html>
